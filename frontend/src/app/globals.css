@@ -1,0 +1,114 @@
+:root {
+  /* Layout */
+  --govbar-height: 34px;
+  --topbar-height: 64px;
+  --sidebar-width: 268px;
+
+  /* Surfaces */
+  --bg: #f2f8f4;
+  --sidebar-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f5faf7;
+  --surface-3: #e7f2eb;
+  --border: #dcebe2;
+  --border-strong: #c2dccb;
+
+  /* Text */
+  --text: #0f2a1d;
+  --text-2: #2c4a3a;
+  --muted: #5e7a6b;
+  --muted-2: #8aa296;
+
+  /* Brand + status */
+  --accent: #16a34a;
+  --accent-strong: #15803d;
+  --accent-soft: #e4f6ea;
+  --accent-ink: #ffffff;
+  --brand-dark: #0f3d2a;
+  --ok: #16a34a;
+  --ok-text: #15803d;
+  --ok-soft: #e4f6ea;
+  --danger: #dc2626;
+  --danger-soft: #fdecec;
+  --warn: #b45309;
+  --warn-soft: #fdf3e2;
+  --info: #2563eb;
+  --info-soft: #e8f0fe;
+
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(15, 42, 29, 0.04), 0 6px 20px rgba(15, 42, 29, 0.05);
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* clip, not hidden: hidden makes body a scroll container and breaks the
+   sticky top bar */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(1100px 480px at 80% -10%, rgba(34, 197, 94, 0.1), transparent 60%),
+    var(--bg);
+  font-family: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: rgba(34, 197, 94, 0.25);
+}
+
+kbd {
+  padding: 1px 5px;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: var(--border-strong) padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

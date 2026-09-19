@@ -1,0 +1,113 @@
+.camera {
+  position: relative;
+  width: 100%;
+  height: 470px;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid #34483f;
+  background: linear-gradient(
+    145deg,
+    #294238,
+    #101916
+  );
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.road {
+  position: absolute;
+  left: 23%;
+  right: 23%;
+  bottom: -30px;
+  height: 390px;
+  background: #505552;
+  clip-path: polygon(
+    39% 0,
+    61% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background: #686354;
+}
+
+.tree {
+  position: absolute;
+  width: 130px;
+  height: 160px;
+  border-radius: 50%;
+  background: #315a3e;
+  top: 35px;
+}
+
+.treeLeft {
+  left: 30px;
+}
+
+.treeRight {
+  right: 35px;
+}
+
+.cameraHeader {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.cameraHeader span {
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.detectionBox {
+  position: absolute;
+  padding: 6px 8px;
+  border: 2px solid #9cddb7;
+  border-radius: 5px;
+  background: rgba(8, 25, 19, 0.8);
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.boxOne {
+  left: 34%;
+  top: 48%;
+}
+
+.boxTwo {
+  left: 57%;
+  top: 60%;
+}
+
+.boxThree {
+  left: 44%;
+  top: 72%;
+}
+
+.liveLabel {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 10px;
+}

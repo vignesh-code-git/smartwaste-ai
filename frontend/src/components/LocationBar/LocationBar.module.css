@@ -1,0 +1,13 @@
+.location {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #d9e5df;
+  font-size: 12px;
+}
+
+.gps {
+  color: #76d6a7;
+  font-size: 11px;
+}

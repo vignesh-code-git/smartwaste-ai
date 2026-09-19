@@ -1,0 +1,239 @@
+.status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.statusMain {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.statusMain strong {
+  display: block;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.statusMain span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.pulse {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--muted-2);
+}
+
+.up {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.down {
+  background: var(--danger);
+  box-shadow: 0 0 0 5px var(--danger-soft);
+}
+
+.statusFigures {
+  display: flex;
+  gap: 28px;
+}
+
+.statusFigures dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.statusFigures dd {
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.heading {
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 16px;
+}
+
+.guides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.guide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.guide:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.guideIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.guide strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.guide ol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.guideLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq details {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.faq details[open] {
+  border-color: #9fd8b3;
+  background: var(--surface-2);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 13px 14px;
+  color: var(--text);
+  font-size: 13.5px;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary svg {
+  flex-shrink: 0;
+  color: var(--muted);
+  transition: transform 0.15s ease;
+}
+
+.faq details[open] summary svg {
+  transform: rotate(90deg);
+}
+
+.faq p {
+  padding: 0 14px 14px;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shortcuts div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.shortcuts dt {
+  display: flex;
+  gap: 4px;
+}
+
+.shortcuts dd {
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.sent p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+}

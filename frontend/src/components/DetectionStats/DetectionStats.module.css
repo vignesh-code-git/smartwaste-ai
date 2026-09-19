@@ -1,0 +1,26 @@
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.card {
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #293832;
+  background: #17211e;
+}
+
+.card span {
+  display: block;
+  color: #81968d;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.card strong {
+  display: block;
+  margin-top: 6px;
+  color: #9ce0bb;
+  font-size: 22px;
+}

@@ -1,0 +1,302 @@
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #03110a;
+  color: #fff;
+  user-select: none;
+}
+
+.viewport {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+/* Fullscreen: the picture takes the screen above the control bar */
+.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.fullscreen .viewport {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+/* Full width in fullscreen; the overlay is fitted the same way */
+.fullscreen .video {
+  object-fit: cover;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- HUD ---------- */
+
+.hud,
+.hudRight {
+  position: absolute;
+  top: 12px;
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.hud {
+  left: 12px;
+}
+
+.hudRight {
+  right: 12px;
+}
+
+.fullscreen .hud {
+  top: 20px;
+  left: 20px;
+}
+
+.fullscreen .hudRight {
+  top: 20px;
+  right: 20px;
+}
+
+.hudTag,
+.statusChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: rgba(3, 17, 10, 0.66);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(6px);
+}
+
+.hudTag {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.hudTag i {
+  display: none;
+}
+
+.rec i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: blink 1.2s steps(2, start) infinite;
+}
+
+.statusChip {
+  border-color: rgba(74, 222, 128, 0.45);
+  color: #bbf7d0;
+}
+
+/* ---------- Control bar: below the picture, always visible ---------- */
+
+.controls {
+  flex-shrink: 0;
+  padding: 4px 12px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, #0b1f15, #07160e);
+}
+
+.fullscreen .controls {
+  padding: 6px 24px 12px;
+}
+
+.scrubber {
+  position: relative;
+  height: 24px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.density {
+  position: absolute;
+  right: 0;
+  bottom: 9px;
+  left: 0;
+  height: 13px;
+  pointer-events: none;
+}
+
+.density span {
+  position: absolute;
+  bottom: 0;
+  min-width: 2px;
+  border-left: 1px solid transparent;
+  background: rgba(74, 222, 128, 0.3);
+  background-clip: padding-box;
+}
+
+.track {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  left: 0;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.14);
+  transition: height 0.15s ease;
+}
+
+.scrubber:hover .track {
+  height: 6px;
+}
+
+.coverage {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.progress {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.7);
+}
+
+.hoverTime {
+  position: absolute;
+  bottom: 20px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(3, 17, 10, 0.92);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(232, 247, 238, 0.82);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.control:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.control:focus-visible {
+  outline: 2px solid #4ade80;
+  outline-offset: 1px;
+}
+
+.play {
+  width: 36px;
+  height: 36px;
+  margin-right: 4px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.play:hover {
+  background: #22c55e;
+}
+
+.on {
+  background: rgba(74, 222, 128, 0.14);
+  color: #4ade80;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  margin: 0 6px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.time {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+  color: #ecfdf3;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.time i {
+  color: rgba(236, 253, 243, 0.4);
+  font-style: normal;
+}
+
+.speed {
+  width: 76px;
+}
+
+/* Detection summary shown in the bar in fullscreen */
+.details {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  .time,
+  .divider {
+    display: none;
+  }
+
+  .control {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -1,0 +1,26 @@
+# Secrets: copy backend/.env.example to backend/.env
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+backend/env/
+.venv/
+
+# Model weights: large, downloaded or rebuilt on first run (see README)
+backend/weights/
+*.pt
+
+# User uploads and generated results
+backend/media/
+
+# Superseded by the config/settings/ package; kept locally only
+backend/config/settings.py
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

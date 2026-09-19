@@ -1,0 +1,278 @@
+.shell {
+  min-height: 100vh;
+}
+
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  z-index: 100;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.skipLink:focus {
+  top: 8px;
+}
+
+/* ---------- Government utility strip ---------- */
+
+.govBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  height: var(--govbar-height);
+  background: var(--brand-dark);
+}
+
+.govStripe {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #e8892b 0 33.3%,
+    #f4f4f4 33.3% 66.6%,
+    #1f8a4c 66.6% 100%
+  );
+}
+
+.govInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: calc(var(--govbar-height) - 3px);
+  padding: 0 20px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11.5px;
+}
+
+.govTitle,
+.govRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.govTitle {
+  color: #ffffff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.govTitle svg {
+  color: #86efac;
+}
+
+.govSub {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.govDivider {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- Main column ---------- */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: var(--govbar-height);
+  padding-left: var(--sidebar-width);
+}
+
+.topBar {
+  position: sticky;
+  top: var(--govbar-height);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--topbar-height);
+  padding: 0 28px;
+  border-bottom: 1px solid var(--border);
+  /* Solid, not backdrop-filter: a filter would become the containing
+     block for fixed-position dropdown menus in the bar */
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.topLeft,
+.topRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.topLeft {
+  flex-shrink: 1;
+}
+
+.topRight {
+  flex-shrink: 0;
+}
+
+.menuButton {
+  display: none;
+}
+
+.menuButton {
+  position: relative;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.menuButton:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.breadcrumb svg {
+  flex-shrink: 0;
+  color: var(--muted-2);
+}
+
+.breadcrumb strong {
+  overflow: hidden;
+  color: var(--text);
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.chip svg {
+  color: var(--muted);
+}
+
+
+.clock {
+  min-width: 206px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  color: var(--muted-2);
+  font-size: 11.5px;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  border: 0;
+  background: rgba(15, 42, 29, 0.35);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1280px) {
+  .govRight {
+    display: none;
+  }
+}
+
+@media (max-width: 1440px) {
+  .clock {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .breadcrumb > span,
+  .breadcrumb > svg {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .topRight .chip {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .main {
+    padding-left: 0;
+  }
+
+  .menuButton {
+    display: grid;
+  }
+
+  .topBar {
+    padding: 0 16px;
+  }
+
+  .topRight .chip:not(.clock) {
+    display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .govSub,
+  .govTitle .govDivider,
+  .topRight .chip,
+  .topRight .chip:not(.clock),
+  .breadcrumb,
+  .breadcrumb > svg {
+    display: none;
+  }
+
+  .govInner {
+    padding: 0 16px;
+  }
+
+  .footer {
+    flex-direction: column;
+    padding: 16px;
+  }
+}
