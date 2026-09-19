@@ -284,11 +284,20 @@
 }
 
 /* Results between the title and the actions */
+/* Results and actions sit together on the right of the header */
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  margin-left: auto;
+}
+
 .headerMetrics {
   display: flex;
-  flex: 1;
-  justify-content: center;
   min-width: 0;
+  padding-right: 14px;
+  border-right: 1px solid var(--border);
 }
 
 .headerMetric {
@@ -305,7 +314,7 @@
 }
 
 .headerMetric strong {
-  color: var(--text);
+  color: var(--metric-color, var(--text));
   font-size: 17px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -313,6 +322,9 @@
 }
 
 .headerMetric span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   margin-top: 2px;
   color: var(--muted);
   font-size: 9.5px;
@@ -322,11 +334,17 @@
   white-space: nowrap;
 }
 
+.headerMetric i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--metric-color, var(--muted-2));
+}
+
 .cardActions {
   display: flex;
   flex-shrink: 0;
   gap: 6px;
-  margin-left: auto;
 }
 
 .ghostButton,
@@ -961,10 +979,10 @@
     flex-wrap: wrap;
   }
 
-  .headerMetrics {
-    order: 3;
+  /* Title on the first line; results and actions together on the next */
+  .headerRight {
     flex-basis: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding-top: 8px;
     border-top: 1px solid var(--border);
   }

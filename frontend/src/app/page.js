@@ -40,6 +40,15 @@ const CAMERA_PANELS = [
 
 const NO_ITEMS = [];
 
+// Feed header results. Plastic and other use deeper shades of the material
+// bar's green and amber so the numbers stay readable on white.
+const HEADER_COLORS = {
+  total: "#0f766e",
+  plastic: "#16a34a",
+  other: "#d97706",
+  severity: "#dc2626",
+};
+
 export default function Home() {
   const playerRef = useRef(null);
   const loadingRef = useRef(new Set());
@@ -474,72 +483,86 @@ export default function Home() {
               </div>
             </div>
 
-            {(showStage || analysis) && (
-              <div className={styles.headerMetrics} aria-label="Detection results">
-                <HeaderMetric label={isCamera ? "In view" : "Waste items"} value={analysis || isCamera ? summary.total : "—"} />
-                <HeaderMetric label="Plastic" value={analysis || isCamera ? summary.plastic : "—"} tone="ok" />
-                <HeaderMetric label="Other" value={analysis || isCamera ? summary.total - summary.plastic : "—"} />
-                <HeaderMetric
-                  label="Severity"
-                  value={analysis || isCamera ? summary.severity.label : "—"}
-                  tone={analysis || isCamera ? summary.severity.tone : "muted"}
-                />
-              </div>
-            )}
-
-            <div className={styles.cardActions}>
-              {mode === "upload" && upload && (
-                <label className={styles.ghostButton}>
-                  <Icon name="upload" size={15} />
-                  Replace
-                  <input
-                    type="file"
-                    accept="video/*"
-                    hidden
-                    onChange={(event) => {
-                      acceptFile(event.target.files?.[0]);
-                      event.target.value = "";
-                    }}
+            <div className={styles.headerRight}>
+              {(showStage || analysis) && (
+                <div className={styles.headerMetrics} aria-label="Detection results">
+                  <HeaderMetric
+                    label={isCamera ? "In view" : "Waste items"}
+                    value={analysis || isCamera ? summary.total : "—"}
+                    color={HEADER_COLORS.total}
                   />
-                </label>
+                  <HeaderMetric
+                    label="Plastic"
+                    value={analysis || isCamera ? summary.plastic : "—"}
+                    color={HEADER_COLORS.plastic}
+                  />
+                  <HeaderMetric
+                    label="Other"
+                    value={analysis || isCamera ? summary.total - summary.plastic : "—"}
+                    color={HEADER_COLORS.other}
+                  />
+                  <HeaderMetric
+                    label="Severity"
+                    value={analysis || isCamera ? summary.severity.label : "—"}
+                    color={HEADER_COLORS.severity}
+                  />
+                </div>
               )}
 
-              {isCamera && camera.stream && (
-                <button className={styles.ghostButton} onClick={stopCamera}>
-                  <Icon name="stop" size={14} />
-                  Stop
-                </button>
-              )}
+              <div className={styles.cardActions}>
+                {mode === "upload" && upload && (
+                  <label className={styles.ghostButton}>
+                    <Icon name="upload" size={15} />
+                    Replace
+                    <input
+                      type="file"
+                      accept="video/*"
+                      hidden
+                      onChange={(event) => {
+                        acceptFile(event.target.files?.[0]);
+                        event.target.value = "";
+                      }}
+                    />
+                  </label>
+                )}
 
-              {!isCamera && analysis && (
-                <>
-                  <button
-                    className={styles.ghostButton}
-                    onClick={() => downloadCsv(register, exportMeta())}
-                    disabled={!firstPassDone}
-                    title={firstPassDone ? "Download the item register as CSV" : "Available after the first full playback"}
-                  >
-                    <Icon name="download" size={15} />
-                    CSV
+                {isCamera && camera.stream && (
+                  <button className={styles.ghostButton} onClick={stopCamera}>
+                    <Icon name="stop" size={14} />
+                    Stop
                   </button>
-                  {savedReport ? (
-                    <Link href={`/reports?report=${savedReport.id}`} className={styles.savedLink}>
-                      <Icon name="check" size={15} />
-                      {reportCode(savedReport.id)}
-                    </Link>
-                  ) : (
+                )}
+
+                {!isCamera && analysis && (
+                  <>
                     <button
-                      className={styles.primaryButton}
-                      onClick={() => setSaving(true)}
+                      className={styles.ghostButton}
+                      onClick={() => downloadCsv(register, exportMeta())}
                       disabled={!firstPassDone}
-                      title={firstPassDone ? "File this analysis as a detection report" : "Available after the first full playback"}
+                      title={firstPassDone ? "Download the item register as CSV" : "Available after the first full playback"}
                     >
-                      <Icon name="reports" size={15} />
-                      Save report
+                      <Icon name="download" size={15} />
+                      CSV
                     </button>
-                  )}
-                </>
-              )}
+                    {savedReport ? (
+                      <Link href={`/reports?report=${savedReport.id}`} className={styles.savedLink}>
+                        <Icon name="check" size={15} />
+                        {reportCode(savedReport.id)}
+                      </Link>
+                    ) : (
+                      <button
+                        className={styles.primaryButton}
+                        onClick={() => setSaving(true)}
+                        disabled={!firstPassDone}
+                        title={firstPassDone ? "File this analysis as a detection report" : "Available after the first full playback"}
+                      >
+                        <Icon name="reports" size={15} />
+                        Save report
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
 
             {summary.total > 0 && (
@@ -835,11 +858,14 @@ function StatusPill({ status, progress }) {
   );
 }
 
-function HeaderMetric({ label, value, tone }) {
+function HeaderMetric({ label, value, color }) {
   return (
-    <div className={styles.headerMetric}>
-      <strong className={tone ? styles[`text_${tone}`] : ""}>{value}</strong>
-      <span>{label}</span>
+    <div className={styles.headerMetric} style={{ "--metric-color": color }}>
+      <strong>{value}</strong>
+      <span>
+        <i />
+        {label}
+      </span>
     </div>
   );
 }
