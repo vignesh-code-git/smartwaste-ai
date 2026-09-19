@@ -25,7 +25,7 @@ import styles from "./page.module.css";
 
 const TABS = [
   ["recommended", "Recommended actions"],
-  ["playbook", "Intervention playbook"],
+  ["playbook", "Interventions"],
 ];
 
 export default function Solutions() {
